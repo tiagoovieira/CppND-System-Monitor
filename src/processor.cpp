@@ -4,20 +4,20 @@
 
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization() { 
-  long totalJiffiesStart = LinuxParser::Jiffies();
-  long activeJiffiesStart = LinuxParser::ActiveJiffies();
+  float totalJiffiesStart = LinuxParser::Jiffies();
+  float activeJiffiesStart = LinuxParser::ActiveJiffies();
   
   usleep(100000); // microseconds --> 100 milliseconds
   
-  long totalJiffiesEnd = LinuxParser::Jiffies();
-  long activeJiffiesEnd = LinuxParser::ActiveJiffies();
+  float totalJiffiesEnd = LinuxParser::Jiffies();
+  float activeJiffiesEnd = LinuxParser::ActiveJiffies();
   
-  long totalDiff = totalJiffiesEnd - totalJiffiesStart;
-  long activeDiff = activeJiffiesEnd - activeJiffiesStart;
+  float totalDiff = totalJiffiesEnd - totalJiffiesStart;
+  float activeDiff = activeJiffiesEnd - activeJiffiesStart;
   
   if (totalDiff == 0) {
     return 0.0;
   }
   
-  return float(activeDiff) / float(totalDiff); 
+  return activeDiff / totalDiff; 
 }
